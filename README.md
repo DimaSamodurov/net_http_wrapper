@@ -48,7 +48,7 @@ NetHttpWrapper.enable
 NetHttpWrapper.after_request do |http:, request:, response:, start_time:|
   request_duration = (Time.now - start_time).round(3)
   request_url =
-    URI.decode("http#{"s" if http.use_ssl?}://#{http.address}:#{http.port}#{request.path}")
+    "http#{"s" if http.use_ssl?}://#{http.address}:#{http.port}#{request.path}"
 
   Rails.logger.info(name: 'http_request',
                     method: request.method,
