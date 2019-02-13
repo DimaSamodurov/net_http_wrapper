@@ -12,6 +12,9 @@ Gem::Specification.new do |spec|
   spec.description   = 'Wraps Net::HTTP requests e.g. for logging purposes.'
   spec.homepage      = 'https://github.com/dimasamodurov/net_http_wrapper'
 
+  spec.required_ruby_version = '>= 2.3.0'
+  spec.license = 'MIT'
+
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
@@ -24,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'webmock', '~> 3.5.1'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-rspec'
+  spec.add_development_dependency 'webmock', '~> 3.5.1'
 end

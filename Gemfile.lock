@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    net_http_wrapper (0.0.2)
+    net_http_wrapper (0.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -42,6 +42,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.4.0)
+    rubocop-rspec (1.32.0)
+      rubocop (>= 0.60.0)
     ruby-progressbar (1.10.0)
     safe_yaml (1.0.4)
     unicode-display_width (1.4.1)
@@ -59,6 +61,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0)
   rubocop
+  rubocop-rspec
   webmock (~> 3.5.1)
 
 BUNDLED WITH
