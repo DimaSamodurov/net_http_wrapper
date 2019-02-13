@@ -2,29 +2,38 @@
 [![Build Status](https://travis-ci.org/DimaSamodurov/net_http_wrapper.svg?branch=master)](https://travis-ci.org/DimaSamodurov/net_http_wrapper)
 [![Code Climate](https://api.codeclimate.com/v1/badges/83512d69c7a20acd6582/maintainability)](https://codeclimate.com/github/DimaSamodurov/net_http_wrapper/maintainability)
 
-Wraps Net::HTTP requests with callbacks e.g. for logging purposes.
+NetHttpWrapper adds callbacks to Net::HTTP requests.
+
+It can be used e.g. for logging purposes, 
+but the library does not make any assumptions on how to do this.
+It does not add neither additional dependency nor convention to your project.
+
+You can use Rails logger, external service or just print to STDOUT, 
+using format you need. 
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'net_http_wrapper', '~> 0.0.1', github: '<path_to_repo'
+gem 'net_http_wrapper'
 ```
 
 ## Usage
 
-Register after_request callback as follows:
+Register the `after_request` callback as follows:
 
 ```ruby
 NetHttpWrapper.after_request do |http:, request:, response:, start_time:|
   # log request/duration, store metrics, analyze response body etc.
 end 
 ```
-Note: you are responsible on error handling within the block.
+You can add multiple callbacks. 
+Callbacks will be called in the same order as registered.
 
-Then enable callbacks anytime
+Note: you are responsible for error handling within the block! 
 
+Enable the callbacks invocation (initially disabled):
 ```ruby
 NetHttpWrapper.enable
 ```
@@ -32,13 +41,12 @@ NetHttpWrapper.enable
 ### Example
 
 Snippet below can be added as an initializer to Rails application.
-Besides, library does not depend on Rails.
 
 ```ruby
 NetHttpWrapper.enable
 
 NetHttpWrapper.after_request do |http:, request:, response:, start_time:|
-  request_duration = (Time.current - start_time).round(3)
+  request_duration = (Time.now - start_time).round(3)
   request_url =
     URI.decode("http#{"s" if http.use_ssl?}://#{http.address}:#{http.port}#{request.path}")
 
@@ -64,4 +72,4 @@ push git commits and tags, and push the `.gem` file to [rubygems.org](https://ru
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub 
-at https://github.com/[USERNAME]/net_http_wrapper.
+at https://github.com/dimasamodurov/net_http_wrapper.
