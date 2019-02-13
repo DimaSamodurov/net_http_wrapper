@@ -1,4 +1,6 @@
 # NetHttpWrapper
+[![Build Status](https://travis-ci.org/DimaSamodurov/net_http_wrapper.svg?branch=master)](https://travis-ci.org/DimaSamodurov/net_http_wrapper)
+[![Code Climate](https://api.codeclimate.com/v1/badges/83512d69c7a20acd6582/maintainability)](https://codeclimate.com/github/DimaSamodurov/net_http_wrapper/maintainability)
 
 Wraps Net::HTTP requests with callbacks e.g. for logging purposes.
 
