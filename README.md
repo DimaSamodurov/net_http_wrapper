@@ -61,8 +61,12 @@ end
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. 
-Then, run `rake spec` to run the tests, and run `rubocop` to check code style.
-You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Then, run `rake` to run the code style check and the tests.
+You can also run `bundle exec bin/console` for an interactive prompt that will allow you to experiment.
+
+You can also see example in action running 
+`bundle exec ruby examples/log_to_stdout.rb`
+
 
 To install this gem onto your local machine, run `bundle exec rake install`. 
 To release a new version, update the version number in `version.rb`, 

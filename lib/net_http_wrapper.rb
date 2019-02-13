@@ -31,7 +31,14 @@ module NetHttpWrapper
     #
     # Example:
     #   NetHttpWrapper.after_request do |http:, request:, response:, start_time:|
-    #     # e.g. log request duration
+    #     request_duration = (Time.now - start_time).round(3)
+    #     request_url =
+    #       URI.decode("http#{"s" if http.use_ssl?}://#{http.address}:#{http.port}#{request.path}")
+    #
+    #     Rails.logger.info(method: request.method,
+    #                       url: request_url,
+    #                       status: response.code,
+    #                       duration: request_duration)
     #   end
     def after_request(&block)
       after_request_callbacks << block
