@@ -22,6 +22,8 @@ RSpec.describe NetHttpWrapper do
 
   context 'when enabled' do
     before do
+      # When using WebMock, we should enable wrapper after the WebMock initialization.
+      # Otherwise WebMock will hide wrapped request.
       NetHttpWrapper.enable
     end
 

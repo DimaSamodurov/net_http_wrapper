@@ -58,6 +58,29 @@ NetHttpWrapper.after_request do |http:, request:, response:, start_time:|
 end
 ```
 
+### Using in test mode
+
+If you use WebMock, enable wrapper after the WebMock initialization,
+otherwise WebMock will hide wrapped request and no 'after_request' callbacks will be called.
+
+In RSpec you could do this in 'before' block:
+```ruby
+before(:suite) { NetHttpWrapper.enable }
+```
+
+But the following will not work:
+```ruby
+allow_any_instance_of(Net::HTTP).to receive(:request) { raise Net::ReadTimeout  }
+# =>
+# Using `any_instance` to stub a method (request) 
+# that has been defined on a prepended module (NetHttpWrapper) is not supported.
+```
+
+As a workaround you could stub 'Net::HTTP.start' in some cases:
+```ruby
+allow_any_instance_of(Net::HTTP).to receive(:start) { raise Net::OpenTimeout  }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. 
